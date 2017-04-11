@@ -8,15 +8,20 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
 @Component
 public class FileScheduler {
+	
+	@Value("${file.location}")
+	private String location;
+	
 	@Scheduled(fixedRate = 10000)
   	public void lastFileModified() {
-		Path file = Paths.get("c://users//futpal//test"); // change to match local directory
+    	Path file = Paths.get(location); 
 		Stream<File> recentFile=Arrays.stream(file.toFile().listFiles()).
 		                                    filter(f-> f.isFile() && (System.currentTimeMillis() - f.lastModified()) < 10000);
 		                                   

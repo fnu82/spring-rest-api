@@ -9,6 +9,10 @@ Prerequisites:
 Java 8
 Maven 3
 
+IMPORTANT:
+Update directory location to your local directory for file storage in file FileLocationProperties.java.
+
+
 Build and run:
 Go to the project's root folder, then type:
 

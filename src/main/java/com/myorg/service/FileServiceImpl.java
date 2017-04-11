@@ -5,7 +5,6 @@ import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -58,12 +57,6 @@ public class FileServiceImpl implements FileService{
 		}
 	}
 
-	@Override
-	public Stream<Path> loadAllFiles() throws IOException {
-		return Files.walk(this.pathLocation, 1)
-                .filter(path -> !path.equals(this.pathLocation))
-                .map(path -> this.pathLocation.relativize(path));
-	}
 
 	@Override
 	public Resource loadAsResource(String filename) {

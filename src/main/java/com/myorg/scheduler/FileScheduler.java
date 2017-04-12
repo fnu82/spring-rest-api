@@ -21,8 +21,8 @@ public class FileScheduler {
 	
 	@Scheduled(fixedRate = 10000)
   	public void lastFileModified() {
-    	Path file = Paths.get(location); 
-		Stream<File> recentFile=Arrays.stream(file.toFile().listFiles()).
+    	Path path = Paths.get(location); 
+		Stream<File> recentFile=Arrays.stream(path.toFile().listFiles()).
 		                                    filter(f-> f.isFile() && (System.currentTimeMillis() - f.lastModified()) < 10000);
 		                                   
 		List<File> fileList=recentFile.collect(Collectors.toList());

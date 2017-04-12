@@ -24,20 +24,20 @@ public class FileServiceImpl implements FileService{
 	private final Path pathLocation;
 		
 	@Autowired
-    FileRepository fileRepository;
+        FileRepository fileRepository;
 	
 	public FileServiceImpl(FileLocationProperties properties) {
-        this.pathLocation = Paths.get(properties.getLocation());
-    }
+            this.pathLocation = Paths.get(properties.getLocation());
+        }
      
 	public FileDetail getFileDetail(long fileId) {
-		return fileRepository.findOne(fileId);
+	    return fileRepository.findOne(fileId);
 	}
 
 	@Override
 	public void saveFile(FileDetail fileDetail) {
-		 fileRepository.save(FileMapper.populateAuditableFields(fileDetail));
-    }
+	     fileRepository.save(FileMapper.populateAuditableFields(fileDetail));
+        }
 
 	@Override
 	public void saveFileToDisk(MultipartFile file) {
@@ -60,7 +60,7 @@ public class FileServiceImpl implements FileService{
 
 	@Override
 	public Resource loadAsResource(String filename) {
-		try {
+	  try {
             Path path = pathLocation.resolve(filename);
             Resource resource = new UrlResource(path.toUri());
             if(resource.exists() || resource.isReadable()) {
@@ -68,11 +68,9 @@ public class FileServiceImpl implements FileService{
             }
             else {
                throw new StorageFileNotFoundException();
-
             }
-        } catch (MalformedURLException e) {
+          } catch (MalformedURLException e) {
                throw new StorageFileNotFoundException();
-        }
-    }
-	
+            }
+       }
 }

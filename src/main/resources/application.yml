@@ -1,3 +1,4 @@
-file:
-  location: c://users//futpal//test
+spring:
+  profiles:
+    active: dev
   

@@ -50,10 +50,10 @@ public class FileServiceImpl implements FileService{
 
 	@Override
 	public void initializePath() {
-		try {
-			Files.createDirectory(pathLocation);
-		} catch (IOException e) {
-			e.printStackTrace();
+		if (Files.notExists(pathLocation)) {
+	              Files.createDirectory(pathLocation);
+		}catch (IOException e) {
+		      e.printStackTrace();
 		}
 	}
 
